@@ -9,6 +9,9 @@ export default new Vuex.Store({
     juegos
   },
   getters: {
+    countGames: state=>{
+      return state.juegos.length
+    }
   },
   mutations: {
   },
