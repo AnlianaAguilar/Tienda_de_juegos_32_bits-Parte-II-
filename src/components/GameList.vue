@@ -5,15 +5,26 @@
       <table>
         <tr>
           <th>Codigo</th>
+          <th>Color</th>
           <th>Nombre</th>
           <th>Stock</th>
           <th>Precio</th>
+          <th>Acciones</th>
         </tr>
-        <tr v-for="game in juegos"  :style="{color:game.color}" :key='game.codigo'>
-          <td>{{game.codigo}}</td>
-          <td>{{game.nombre}}</td>          
-          <td>{{game.stock}}</td>
-          <td>{{Number(game.precio).toLocaleString('es-CL')}}</td>
+        <tr
+          v-for="game in juegos"
+          :style="{ color: game.color }"
+          :key="game.codigo"
+        >
+          <td>{{ game.codigo }}</td>
+          <td>{{ game.color }}</td>
+          <td>{{ game.nombre }}</td>
+          <td>{{ game.stock }}</td>
+          <td>{{ Number(game.precio).toLocaleString("es-CL") }}</td>
+          <td>
+            <button>+</button> 
+            <button>-</button>
+          </td>
         </tr>
       </table>
     </div>
@@ -21,7 +32,7 @@
 </template>
 
 <script>
-//maphelper  
+//maphelper
 import { mapState } from "vuex";
 export default {
   name: "GameList",
@@ -43,19 +54,19 @@ export default {
 </script>
 
 <style scoped>
-
-.subtitle{
-    font-size: 20px;
+.subtitle {
+  font-size: 20px;
 }
 
-table, th, td {
-  border:1px solid black
+table,
+th,
+td {
+  border: 1px solid black;
 }
 
-table{
-    width: 700px;
-    margin-left: auto;
-    margin-right: auto;
+table {
+  width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 }
-
 </style>
