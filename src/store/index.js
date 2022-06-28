@@ -9,13 +9,26 @@ export default new Vuex.Store({
     juegos
   },
   getters: {
+    // countGames: state=>{
+    //   return state.juegos.length
+    // },
     countGames: state=>{
-      return state.juegos.length
+      return state.juegos.reduce((total, juego)=>{
+        return total + parseInt(juego.stock)
+      },0)
     }
+
   },
   mutations: {
+    REMOVE_GAMES:(state, id)=>{
+      let index = state.juegos.findIndex((jue)=>jue.codigo==id)
+      state.juegos.splice(index,1)
+    }
   },
   actions: {
+    removeGame:({commit}, id)=>{
+      commit('REMOVE_GAMES', id)
+    }
   },
   modules: {
   }

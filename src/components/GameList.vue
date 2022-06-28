@@ -22,8 +22,8 @@
           <td>{{ game.stock }}</td>
           <td>{{ Number(game.precio).toLocaleString("es-CL") }}</td>
           <td>
-            <button>+</button> 
-            <button>-</button>
+            <button @click="add">+</button> 
+            <button @click="remove(game.codigo)">-</button>
           </td>
         </tr>
       </table>
@@ -33,7 +33,7 @@
 
 <script>
 //maphelper
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 export default {
   name: "GameList",
   // props: {},
@@ -42,8 +42,18 @@ export default {
   },
   computed: {
     ...mapState(["juegos"]),
+    
   },
-  //methods: {}
+  methods: {
+    ...mapActions(['removeGame']),
+    remove(id){
+      // alert(id)
+      let resp = confirm('deseas borrar')
+      if(resp){
+        this.removeGame(id)
+      }
+    }
+  },
   // watch: {},
   // components: {},
   // mixins: [],
