@@ -2,11 +2,14 @@
     <div>
         <h1 class="title">Tienda 32 Bits</h1>
         <game-list></game-list>
+        <game-count></game-count>
     </div>    
 </template>
 
 <script>
 import GameList from '@/components/GameList.vue'
+import GameCount from '@/components/GameCount.vue'
+
 export default {
     name: 'games-component',
     // props: {},
@@ -17,7 +20,8 @@ export default {
     //methods: {},
     // watch: {},
     components: {
-        'game-list':GameList
+        'game-list':GameList,
+        'game-count':GameCount
     },
     // mixins: [],
     // filters: {},
