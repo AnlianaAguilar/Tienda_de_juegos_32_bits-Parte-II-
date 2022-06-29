@@ -9,25 +9,36 @@ export default new Vuex.Store({
     juegos
   },
   getters: {
-    // countGames: state=>{
-    //   return state.juegos.length
-    // },
     countGames: state=>{
       return state.juegos.reduce((total, juego)=>{
         return total + parseInt(juego.stock)
       },0)
     }
-
   },
   mutations: {
-    REMOVE_GAMES:(state, id)=>{
-      let index = state.juegos.findIndex((jue)=>jue.codigo==id)
-      state.juegos.splice(index,1)
+    REMOVE_STOCK:(state, id)=>{
+      // let index = state.juegos.findIndex((jue)=>parseInt(jue.codigo)==id)
+      // state.juegos.splice(index,1)
+      state.juegos.forEach(juego => {
+        if(juego.codigo==id){
+          juego.stock=parseInt(juego.stock)-1
+        }
+      });
+    },
+    CHANGE_COLOR:(state, optColor)=>{
+      state.juegos.forEach(juego =>{
+        if (juego.codigo==optColor.codigo) {
+          juego.color=optColor.value
+        }
+      })
     }
   },
   actions: {
-    removeGame:({commit}, id)=>{
-      commit('REMOVE_GAMES', id)
+    removeStock:({commit}, id)=>{
+      commit('REMOVE_STOCK', id)
+    },
+    changeColor:({commit}, optColor)=>{
+      commit('CHANGE_COLOR', optColor)
     }
   },
   modules: {

@@ -17,12 +17,22 @@
           :key="game.codigo"
         >
           <td>{{ game.codigo }}</td>
-          <td>{{ game.color }}</td>
+          <td>{{game.color}}
+            <select v-model="game.color" @change="change($event,game.codigo)">
+              <option 
+              v-for="color in colors"
+              :key="color.value"
+              :value="color.value"
+              >
+              {{color.text}}
+              </option>
+            </select>
+          </td>
           <td>{{ game.nombre }}</td>
           <td>{{ game.stock }}</td>
           <td>{{ Number(game.precio).toLocaleString("es-CL") }}</td>
           <td>
-            <button @click="add">+</button> 
+            <button @click="add(game.codigo)">+</button> 
             <button @click="remove(game.codigo)">-</button>
           </td>
         </tr>
@@ -38,21 +48,47 @@ export default {
   name: "GameList",
   // props: {},
   data: function () {
-    return {};
+    return {
+        colors:[
+        {
+        text:"Azul",
+        value:"blue"
+        },
+        {
+        text:"Rojo",
+        value:"red"
+        },
+        {
+        text:"Verde",
+        value:"green"
+        },
+        {
+        text:"Negro",
+        value:"black"
+        }
+      ]
+    };
   },
   computed: {
     ...mapState(["juegos"]),
     
   },
   methods: {
-    ...mapActions(['removeGame']),
-    remove(id){
-      // alert(id)
-      let resp = confirm('deseas borrar')
-      if(resp){
-        this.removeGame(id)
-      }
+    
+    change(event, codigo){
+      let options = {codigo:codigo, value:event.target.value}      
+      this.changeColor(options)
+    },
+
+    ...mapActions(['removeStock','changeColor']),
+    remove(id){ 
+      this.removeStock(id)      
+    },
+
+    add(id){
+      alert(id)
     }
+
   },
   // watch: {},
   // components: {},
