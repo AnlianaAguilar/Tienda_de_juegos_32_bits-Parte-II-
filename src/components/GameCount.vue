@@ -1,5 +1,5 @@
 <template>
-    <h1>Total: {{countGames}}</h1>
+    <h1>Total: {{countGames}} Juegos</h1>
 </template>
 
 <script>
@@ -26,5 +26,7 @@ export default {
 </script>
 
 <style scoped>
-    
+    *{
+        font-size: 20px;
+    }
 </style>

@@ -23,13 +23,15 @@ export default new Vuex.Store({
         }
       });
     },
+
     CHANGE_COLOR:(state, optColor)=>{
       state.juegos.forEach(juego =>{
-        if (juego.codigo==optColor.codigo) {
+        if (juego.codigo==optColor.codigo) {//se compra como objeto por que que las opciones estas en un objeto
           juego.color=optColor.value
         }
       })
     },
+
     ADD_STOCK:(state, id)=>{
       state.juegos.forEach(juego => {
         if(juego.codigo==id){
@@ -42,9 +44,11 @@ export default new Vuex.Store({
     removeStock:({commit}, id)=>{
       commit('REMOVE_STOCK', id)
     },
+
     changeColor:({commit}, optColor)=>{
       commit('CHANGE_COLOR', optColor)
     },
+
     addStock:({commit}, id)=>{
       commit('ADD_STOCK', id)
     }

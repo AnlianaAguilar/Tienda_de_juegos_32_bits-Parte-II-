@@ -17,8 +17,8 @@
           :key="game.codigo"
         >
           <td>{{ game.codigo }}</td>
-          <td>{{game.color}}
-            <select v-model="game.color" @change="change($event,game.codigo)">
+          <td>
+            <select v-model="game.color" @change="change($event,game.codigo)"> <!--v-model no sera una data ya que el valor ya viene con el v-for-->
               <option 
               v-for="color in colors"
               :key="color.value"
@@ -49,7 +49,7 @@ export default {
   // props: {},
   data: function () {
     return {
-        colors:[
+        colors:[ //es el listado qeu se muestra en la options
         {
         text:"Azul",
         value:"blue"
@@ -70,23 +70,21 @@ export default {
     };
   },
   computed: {
-    ...mapState(["juegos"]),
-    
+    ...mapState(["juegos"]),    
   },
   methods: {
+    ...mapActions(['removeStock','changeColor','addStock']),
     
     change(event, codigo){
-      let options = {codigo:codigo, value:event.target.value}      
-      this.changeColor(options)
+      let options = {codigo:codigo, value:event.target.value}    // se crea ya que las action solo pueden recibir 1 valor
+      this.changeColor(options)                                  // y para realizar el cambio se requier de identificador y el valor que selecciona el usuario
     },
-
-    ...mapActions(['removeStock','changeColor','addStock']),
+    
     remove(id){ 
       this.removeStock(id)      
     },
 
     add(id){
-      alert(id)
       this.addStock(id)
     }
 
