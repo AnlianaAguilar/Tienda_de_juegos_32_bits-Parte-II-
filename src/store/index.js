@@ -17,8 +17,6 @@ export default new Vuex.Store({
   },
   mutations: {
     REMOVE_STOCK:(state, id)=>{
-      // let index = state.juegos.findIndex((jue)=>parseInt(jue.codigo)==id)
-      // state.juegos.splice(index,1)
       state.juegos.forEach(juego => {
         if(juego.codigo==id){
           juego.stock=parseInt(juego.stock)-1
@@ -31,6 +29,13 @@ export default new Vuex.Store({
           juego.color=optColor.value
         }
       })
+    },
+    ADD_STOCK:(state, id)=>{
+      state.juegos.forEach(juego => {
+        if(juego.codigo==id){
+          juego.stock=parseInt(juego.stock)+1
+        }
+      })
     }
   },
   actions: {
@@ -39,6 +44,9 @@ export default new Vuex.Store({
     },
     changeColor:({commit}, optColor)=>{
       commit('CHANGE_COLOR', optColor)
+    },
+    addStock:({commit}, id)=>{
+      commit('ADD_STOCK', id)
     }
   },
   modules: {

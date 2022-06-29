@@ -80,13 +80,14 @@ export default {
       this.changeColor(options)
     },
 
-    ...mapActions(['removeStock','changeColor']),
+    ...mapActions(['removeStock','changeColor','addStock']),
     remove(id){ 
       this.removeStock(id)      
     },
 
     add(id){
       alert(id)
+      this.addStock(id)
     }
 
   },
